@@ -1,16 +1,15 @@
 const { defineConfig } = require('@vue/cli-service')
+const webpack = require('webpack');
 module.exports = {
-  transpileDependencies: [],
-  css: {
-    loaderOptions: {
-      postcss: {
-        postcssOptions: {
-          plugins: [
-            require('tailwindcss'),
-            require('autoprefixer'),
-          ],
-        },
-      },
-    },
-  }
+  chainWebpack: config => {
+    config.resolve.alias.set('vue', '@vue/runtime-dom')
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        'vue$': 'vue/dist/vue.runtime.esm-bundler.js'
+      }
+    }
+  },
+  transpileDependencies: []
 }
