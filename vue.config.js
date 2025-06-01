@@ -1,4 +1,16 @@
 const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true
-})
+module.exports = {
+  transpileDependencies: [],
+  css: {
+    loaderOptions: {
+      postcss: {
+        postcssOptions: {
+          plugins: [
+            require('tailwindcss'),
+            require('autoprefixer'),
+          ],
+        },
+      },
+    },
+  }
+}
