@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Homem de Ferro",
+    "icon": "ironman_icon.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Capitão América",
+    "icon": "captain_icon.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Thor",
+    "icon": "thor_icon.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Hulk",
+    "icon": "hulk_icon.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Viúva Negra",
+    "icon": "blackwidow_icon.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Homem-Aranha",
+    "icon": "spiderman_icon.jpg"
+  }
+]
