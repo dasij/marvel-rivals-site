@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkmarvel_rivals_site"]=self["webpackChunkmarvel_rivals_site"]||[]).push([[1521],{1521:function(e){e.exports={habilidades:[]}}}]);

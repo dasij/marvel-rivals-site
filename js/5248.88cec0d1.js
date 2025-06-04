@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkmarvel_rivals_site"]=self["webpackChunkmarvel_rivals_site"]||[]).push([[5248],{5248:function(e){e.exports={teamups:[]}}}]);

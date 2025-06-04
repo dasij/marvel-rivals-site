@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkmarvel_rivals_site"]=self["webpackChunkmarvel_rivals_site"]||[]).push([[6758],{6758:function(e){e.exports=JSON.parse('[{"heroId":2,"heroName":"Hulk","name":"Brain & Brawn","description":"Peni\'s tactical awareness combined with Hulk\'s raw power makes them a formidable duo.","images":["combo_screenshot.jpg"],"videos":["combo_video.mp4"]}]')}}]);
