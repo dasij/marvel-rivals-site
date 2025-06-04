@@ -1,10 +1,11 @@
 <template>
   <div class="home-page">
+    <div class="overlay"></div>
     <!-- Conteúdo central -->
     <div class="content">
       <h1 class="title">{{ title }}</h1>
       <p class="subtitle">{{ subtitle }}</p>
-      <button class="cta-button">Get Started</button>
+      <button class="cta-button"><router-link to="/heroes" class="cta-link">Get Started</router-link></button>
     </div>
   </div>
 </template>
@@ -17,6 +18,24 @@ const subtitle = ref('This is a unofficial patch notes with changes suggestions 
 </script>
 
 <style scoped>
+.home-page {
+  background-image: url('@/assets/images/generic/background_main.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
 .home-page {
   position: relative;
   height: calc(100vh - 80px);
@@ -36,6 +55,7 @@ const subtitle = ref('This is a unofficial patch notes with changes suggestions 
   background: rgba(43, 51, 64, 255);
   border-radius: 8px;
   backdrop-filter: blur(4px);
+  margin-top: -100px;
 }
 
 .title {
@@ -67,6 +87,7 @@ const subtitle = ref('This is a unofficial patch notes with changes suggestions 
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.2rem;
+  text-decoration: none;
   padding: 15px 40px;
   border-radius: 4px;
   border: none;
@@ -77,6 +98,16 @@ const subtitle = ref('This is a unofficial patch notes with changes suggestions 
   margin-top: 20px;
   position: relative;
   overflow: hidden;
+}
+
+.cta-link {
+  text-decoration: none;
+  color: white;
+}
+
+.cta-link:visited {
+  text-decoration: none;
+  color: white;
 }
 
 .cta-button:hover {

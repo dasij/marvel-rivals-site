@@ -1,22 +1,19 @@
 <template>
   <div id="app">
     <MarvelHeader />
-    <GlobalBackground />
-    <MainPage />
+    <div class="content-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 import MarvelHeader from '@/components/MarvelHeader.vue'
-import GlobalBackground from '@/components/GlobalBackground.vue';
-import MainPage from '@/components/MainPage.vue'
 
 export default {
   name: 'App',
   components: {
-    MarvelHeader,
-    GlobalBackground,
-    MainPage
+    MarvelHeader
   }
 }
 </script>
@@ -36,6 +33,15 @@ export default {
   font-style: normal;
 }
 
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: transparent !important;
+  overflow-x: hidden;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -43,5 +49,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.content-wrapper {
+  padding-top: 100px;
+  /* Espaço reservado para o header */
 }
 </style>

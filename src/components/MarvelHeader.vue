@@ -3,7 +3,8 @@
         <div class="header-container">
             <!-- Logo à esquerda -->
             <div class="logo-container">
-                <img src="@/assets/images/header/logo_header.png" alt="Marvel Rivals" class="logo">
+                <router-link to="/"><img src="@/assets/images/header/logo_header.png" alt="Marvel Rivals" class="logo">
+                </router-link>
             </div>
 
             <!-- Itens do menu -->
