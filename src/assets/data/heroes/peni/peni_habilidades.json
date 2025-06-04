@@ -63,7 +63,7 @@
         {
           "description": "Snare only ends if the enemy is touching the ground",
           "impact": "strong",
-          "comment": "While Peni shouldn't counter aerial heroes, landing her slow-moving M2 projectile on them should be properly rewarding. This change specifically compensates for the difficulty of hitting airborne targets, without significantly affecting other scenarios where targets would naturally hit the ground quickly anyway."
+          "comment": "While Peni shouldn't counter aerial heroes or jumping spidermans, landing her slow-moving M2 projectile on them should be properly rewarding. This change specifically compensates for the difficulty of hitting airborne targets, without significantly affecting other scenarios where targets would naturally hit the ground quickly anyway."
         }
       ]
     },
@@ -108,7 +108,7 @@
       "changes": [
         {
           "description": "Allow holding button to deploy all mines at once",
-          "impact": "weak",
+          "impact": "balanced",
           "comment": "Quality-of-life change inspired by Hulk's jump mechanic. Holding the button lets you position during fights before unleashing all mines in one devastating burst - perfect for surprise traps and quick zone control."
         }
       ]
@@ -135,10 +135,10 @@
         {
           "description": "Add hold-button toggle to disable automatic web attachment for Cyber-Bond",
           "impact": "weak",
-          "comment": "While high-level Peni players rarely use the automatic web attachment feature, it shouldn't be removed as it enables potential future teamplay combos. This optional toggle prevents accidental attachments during normal gameplay while preserving the mechanic for strategic(lobby bungie jumping) use cases."
+          "comment": "While high-level Peni players rarely use the automatic web attachment feature, it shouldn't be removed as it enables potential future team-up combos. This optional toggle prevents accidental attachments during normal gameplay while preserving the mechanic for strategic(lobby bungie jumping) use cases."
         },
         {
-          "description": "Enable web zone passive effects during Cyber-Bond traversal",
+          "description": "Enable web zone passive effects during Cyber-Bond tether-bond",
           "impact": "balanced"
         },
         {
@@ -198,7 +198,7 @@
           "comment": "Currently, Peni is the only transformation-based ultimate that remains fully vulnerable during its long startup. Characters like Hulk become INVULNERABLE when transforming (outside of bonus health), while Peni can be interrupted and lose her entire ult shield from a single hit. The only 'advantage' she has is slight movement during the animation, but getting canceled feels like absolute bullshit—unlike Scarlet Witch’s ult, which is at least understandable and fair to counter. Since Peni’s ult isn’t instant and requires setup to be effective, getting knocked out of it before anything happens just makes you go *'Wow, that’s fucking stupid.'* This change ensures her ult isn’t invalidated by random stuns."
         },
         {
-          "description": "Hitting enemies with Spider Sweep grants 75 shield",
+          "description": "Hitting enemies with Spider Sweep grants 100 cumulative shield up to 300",
           "impact": "balanced",
           "comment": "This change incentivizes using M1 during Peni’s ultimate, which currently has little value due to its low damage and the fact that she often becomes *more* vulnerable while ulting. The shield reward compensates for the risk, making her ult less of a 'lose condition' and adding an offensive/defensive layer where players must decide between aggression and survival."
         },
