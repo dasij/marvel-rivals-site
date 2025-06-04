@@ -2,7 +2,7 @@
   "lastUpdated": "2025-06-05",
   "heroStats": {
     "name": "Peni Parker Stats",
-    "icon": "lord_icon_penni.png",
+    "icon": "lord_icon.png",
     "details": [
       "Health: 750",
       "Movement Speed: 6.5 m/s",
@@ -206,6 +206,11 @@
           "description": "Allow earlier ultimate cancellation",
           "impact": "balanced",
           "comment": "Peni’s ultimate isn’t universally strong—it’s situational, and there are many cases where her base kit (which is highly versatile and reliable) is simply better. This change gives players more control, letting them opt out early if the ult isn’t working out, or even just using it briefly to grab bonus mines before canceling. It opens up flexibility instead of forcing a commitment to an underwhelming transformation."
+        },
+        {
+          "description": "Reduce Cyber-Webs deployment delay by 15% and improve connection reliability",
+          "impact": "balanced",
+          "comment": "The objective is to make your webs deploy quicker and actually connect when you need them to during ult as there a lot of web whiffs in the game. If they need to overlap a bit to stick properly, so be it - at least they'll work consistently."
         }
       ]
     }

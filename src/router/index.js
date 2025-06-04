@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router';
 import HeroList from '@/views/HeroList.vue'
 import HeroDetail from '@/views/HeroDetail.vue'
 import MainPage from '@/components/MainPage.vue'
@@ -23,7 +23,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory('/marvel-rivals-site/'),
     routes
 })
 

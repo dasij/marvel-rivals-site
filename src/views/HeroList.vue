@@ -3,13 +3,14 @@
         <GlobalBackground />
 
         <div class="hero-list">
-            <!-- Banner de heróis como título/separador -->
             <div class="heroes-banner">
                 <img src="@/assets/images/heroes/hero_select.png" alt="Heróis" class="banner-image">
             </div>
 
             <div class="hero-grid">
-                <router-link v-for="hero in heroes" :key="hero.id" :to="`/heroes/${hero.id}`" class="hero-card">
+                <!-- Filtra heróis ativos e ordena por role -->
+                <router-link v-for="hero in sortedActiveHeroes" :key="hero.id" :to="`/heroes/${hero.id}`"
+                    class="hero-card">
                     <div class="thumb-container">
                         <img :src="getHeroThumb(hero.folder)" :alt="hero.name" class="hero-thumb" />
                     </div>
@@ -31,6 +32,27 @@ export default {
     data() {
         return {
             heroes: heroes
+        }
+    },
+    computed: {
+        // Filtra heróis ativos e aplica ordenação
+        sortedActiveHeroes() {
+            const roleOrder = {
+                'VANGUARD': 1,
+                'STRATEGIST': 2,
+                'DUELIST': 3
+            };
+
+            return this.heroes
+                .filter(hero => hero.active) // Filtra apenas ativos
+                .sort((a, b) => {
+                    // Ordena por categoria (VANGUARD > STRATEGIST > DUELIST)
+                    if (roleOrder[a.role] !== roleOrder[b.role]) {
+                        return roleOrder[a.role] - roleOrder[b.role];
+                    }
+                    // Mantém ordem original dentro da mesma categoria
+                    return a.id - b.id;
+                });
         }
     },
     methods: {

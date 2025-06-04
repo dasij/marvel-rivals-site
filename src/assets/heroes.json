@@ -2,6 +2,274 @@
   {
     "id": 1,
     "name": "Peni Parker",
-    "folder": "peni"
+    "folder": "peni",
+    "role": "VANGUARD",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Hulk",
+    "folder": "hulk",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 3,
+    "name": "Groot",
+    "folder": "groot",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 4,
+    "name": "Magneto",
+    "folder": "magneto",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 5,
+    "name": "The Thing",
+    "folder": "thing",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 6,
+    "name": "Thor",
+    "folder": "thor",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 7,
+    "name": "Captain America",
+    "folder": "captainamerica",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 8,
+    "name": "Venom",
+    "folder": "venom",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 9,
+    "name": "Emma Frost",
+    "folder": "emmafrost",
+    "role": "VANGUARD",
+    "active": false
+  },
+  {
+    "id": 10,
+    "name": "Doctor Strange",
+    "folder": "strange",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 11,
+    "name": "Loki",
+    "folder": "loki",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 12,
+    "name": "Rocket Raccoon",
+    "folder": "rocket",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 13,
+    "name": "Mantis",
+    "folder": "mantis",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 14,
+    "name": "Adam Warlock",
+    "folder": "adamwarlock",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 15,
+    "name": "Jeff the Land Shark",
+    "folder": "jeff",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 16,
+    "name": "Cloak & Dagger",
+    "folder": "cloakdagger",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 17,
+    "name": "Invisible Woman",
+    "folder": "invisiblewoman",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 18,
+    "name": "Ultron",
+    "folder": "ultron",
+    "role": "STRATEGIST",
+    "active": false
+  },
+  {
+    "id": 19,
+    "name": "Iron Man",
+    "folder": "ironman",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 20,
+    "name": "Spider-Man",
+    "folder": "spiderman",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 21,
+    "name": "Black Panther",
+    "folder": "panther",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 22,
+    "name": "Scarlet Witch",
+    "folder": "witch",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 23,
+    "name": "Punisher",
+    "folder": "punisher",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 24,
+    "name": "Namor",
+    "folder": "namor",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 25,
+    "name": "Luna Snow",
+    "folder": "luna",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 26,
+    "name": "Magik",
+    "folder": "magik",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 27,
+    "name": "Star-Lord",
+    "folder": "starlord",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 28,
+    "name": "Storm",
+    "folder": "storm",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 29,
+    "name": "Hela",
+    "folder": "hela",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 30,
+    "name": "Winter Soldier",
+    "folder": "wintersoldier",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 31,
+    "name": "Psylocke",
+    "folder": "psylocke",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 32,
+    "name": "Moon Knight",
+    "folder": "moonknight",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 33,
+    "name": "Hawkeye",
+    "folder": "hawkeye",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 34,
+    "name": "Squirrel Girl",
+    "folder": "squirrelgirl",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 35,
+    "name": "Iron Fist",
+    "folder": "ironfist",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 36,
+    "name": "Black Widow",
+    "folder": "blackwidow",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 37,
+    "name": "Wolverine",
+    "folder": "wolverine",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 38,
+    "name": "Mister Fantastic",
+    "folder": "misterfantastic",
+    "role": "DUELIST",
+    "active": false
+  },
+  {
+    "id": 39,
+    "name": "Human Torch",
+    "folder": "humantorch",
+    "role": "DUELIST",
+    "active": false
   }
 ]

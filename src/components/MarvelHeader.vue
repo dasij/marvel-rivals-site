@@ -100,7 +100,20 @@ onUnmounted(() => {
     padding: 0 1.5rem;
 }
 
-.menu-item:hover {
+
+
+.menu-link {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-link:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-link:hover {
+    text-decoration: none;
     color: #e62429;
 }
 
