@@ -185,7 +185,7 @@
     "details": [
         "**Happy Splash Drone**:",
         "- Deploys for **10 seconds**, spraying water in a cone (like Jeff's basic attack).",
-        "- **Targeting**: Focuses enemy with lowest HP% (0.75s delay to switch targets).",
+        "- **Targeting**: Focuses allied with lowest HP% (0.75s delay to switch targets).",
         "- **Behavior**:",
           "• Tracks head-level shots (angles upward if needed).",
           "• Maintains focus on targets that break LoS for **0.75s max**.",
