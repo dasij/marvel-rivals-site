@@ -4,20 +4,24 @@
         
         <!-- Grid de seleção de heróis -->
         <div class="hero-selection-grid">
-            <div 
-                v-for="otherHero in otherHeroes" 
-                :key="otherHero.id"
-                class="hero-selector"
-                :class="{ 'selected': selectedHero && selectedHero.id === otherHero.id }"
-                @click="selectHero(otherHero)"
-            >
-                <img 
-                    :src="getHeroIcon(otherHero.folder, selectedHero && selectedHero.id === otherHero.id)" 
-                    :alt="otherHero.name"
-                    class="hero-icon"
-                    :title="otherHero.name"
-                >
-            </div>
+<div 
+    v-for="otherHero in otherHeroes" 
+    :key="otherHero.id"
+    class="hero-selector"
+    :class="{ 
+        'selected': selectedHero && selectedHero.id === otherHero.id,
+        'no-teamup': heroesWithoutTeamup.includes(otherHero.id)
+    }"
+    @click="!heroesWithoutTeamup.includes(otherHero.id) && selectHero(otherHero)"
+>
+    <img 
+        :src="getHeroIcon(otherHero.folder, selectedHero && selectedHero.id === otherHero.id)" 
+        :alt="otherHero.name"
+        class="hero-icon"
+        :class="{ 'grayscale': heroesWithoutTeamup.includes(otherHero.id) }"
+        :title="heroesWithoutTeamup.includes(otherHero.id) ? 'No teamup information available' : otherHero.name"
+    >
+</div>
         </div>
 
         <!-- Container principal com posição relativa para os portraits absolutos -->
@@ -77,8 +81,20 @@
                     </div>
 
                     <div v-if="currentTeamup" class="teamup-info">
-                        <h3 class="teamup-name">{{ currentTeamup.name }}</h3>
+                        <div class="teamup-header">
+                            <h3 class="teamup-name">{{ currentTeamup.name }}</h3>
+                            <div v-if="currentTeamup.impact" class="teamup-impact" :class="currentTeamup.impact.toLowerCase()" 
+                                :title="getImpactTooltip(currentTeamup.impact)">
+                                {{ currentTeamup.impact }}
+                            </div>
+                        </div>
                         <p class="teamup-description" v-html="currentTeamup.description"></p>
+                        
+                        <!-- Lista de detalhes -->
+<ul v-if="currentTeamup.details && currentTeamup.details.length" class="teamup-details">
+    <li v-for="(detail, index) in currentTeamup.details" :key="index" v-html="formatDetailText(detail)">
+    </li>
+</ul>
                         
                         <!-- Imagens do teamup -->
                         <div v-if="currentTeamup.images && currentTeamup.images.length" class="teamup-images">
@@ -150,6 +166,14 @@ export default {
             required: true
         }
     },
+    watch: {
+    currentTeamup(newVal) {
+        if (newVal && (!newVal.description || newVal.description.trim() === '')) {
+            this.markHeroAsNoTeamup(this.selectedHero.id);
+            this.currentTeamup = null;
+        }
+    }
+},
     data() {
         return {
             otherHeroes: [],
@@ -158,16 +182,33 @@ export default {
             lightboxVisible: false,
             lightboxMedia: null,
             lightboxType: 'image',
-            heroPortraitRightVisible: true
+            heroPortraitRightVisible: true,
+            heroesWithoutTeamup: []
         }
     },
-    created() {
-        this.loadOtherHeroes()
-        // Seleciona o primeiro herói por padrão
-        if (this.otherHeroes.length > 0) {
-            this.selectHero(this.otherHeroes[0])
+async created() {
+    await this.loadOtherHeroes();
+    for (const hero of this.otherHeroes) {
+        try {
+            const teamupData = await import(`@/assets/data/heroes/${this.hero.folder}/${this.hero.folder}_teamups.json`);
+            const allTeamups = teamupData.default || teamupData;
+            const teamup = allTeamups.find(t => t.heroId === hero.id || t.heroName === hero.name);
+            
+            if (!teamup || !teamup.description || teamup.description.trim() === '') {
+                this.heroesWithoutTeamup.push(hero.id);
+            }
+        } catch {
+            this.heroesWithoutTeamup.push(hero.id);
         }
-    },
+    }
+    
+    // Seleciona o primeiro herói que tem teamup (se existir)
+    const firstHeroWithTeamup = this.otherHeroes.find(h => !this.heroesWithoutTeamup.includes(h.id));
+    if (firstHeroWithTeamup) {
+        this.selectHero(firstHeroWithTeamup);
+    }
+},
+    
     methods: {
         getHeroIcon(folder, isSelected = false) {
             try {
@@ -185,6 +226,10 @@ export default {
                 return null
             }
         },
+            formatDetailText(text) {
+        // Substitui **texto** por <strong>texto</strong>
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    },
         getTeamupImage(imagePath) {
             try {
                 const image = require(`@/assets/data/heroes/${this.hero.folder}/teamup_images/${imagePath}`)
@@ -208,21 +253,34 @@ export default {
                 console.warn('No other heroes available for teamups')
             }
         },
-        async selectHero(hero) {
-            this.selectedHero = hero
-            try {
-                const teamupData = await import(`@/assets/data/heroes/${this.hero.folder}/${this.hero.folder}_teamups.json`)
-                const allTeamups = teamupData.default || teamupData
-                
-                this.currentTeamup = allTeamups.find(t => 
-                    t.heroId === hero.id || 
-                    t.heroName === hero.name
-                ) || null
-            } catch (error) {
-                console.error('Error loading teamup:', error)
-                this.currentTeamup = null
+async selectHero(hero) {
+        this.selectedHero = hero;
+        try {
+            const teamupData = await import(`@/assets/data/heroes/${this.hero.folder}/${this.hero.folder}_teamups.json`)
+            const allTeamups = teamupData.default || teamupData;
+            
+            this.currentTeamup = allTeamups.find(t => 
+                t.heroId === hero.id || 
+                t.heroName === hero.name
+            ) || null;
+            
+            // Verifica se o teamup existe mas tem descrição vazia
+            if (this.currentTeamup && (!this.currentTeamup.description || this.currentTeamup.description.trim() === '')) {
+                this.markHeroAsNoTeamup(hero.id);
+                this.currentTeamup = null;
             }
-        },
+        } catch (error) {
+            console.error('Error loading teamup:', error);
+            this.currentTeamup = null;
+            this.markHeroAsNoTeamup(hero.id);
+        }
+    },
+    
+    markHeroAsNoTeamup(heroId) {
+        if (!this.heroesWithoutTeamup.includes(heroId)) {
+            this.heroesWithoutTeamup.push(heroId);
+        }
+    },
         openLightbox(media, type = 'image') {
             const mediaExists = type === 'image' 
                 ? this.getTeamupImage(media) !== null
@@ -238,6 +296,15 @@ export default {
         closeLightbox() {
             this.lightboxVisible = false
             document.body.style.overflow = ''
+        },
+        getImpactTooltip(impact) {
+            const tooltips = {
+                'OP': 'This teamup is extremely powerful and can dominate matches',
+                'strong': 'This teamup provides significant advantages',
+                'balanced': 'This is a fair and balanced teamup',
+                'weak': 'This teamup has minimal synergy or impact'
+            }
+            return tooltips[impact] || ''
         }
     }
 }
@@ -267,6 +334,27 @@ export default {
     width: calc(100% - 40px);
     max-width: 1800px;
     margin: 0 20px 2rem 20px;
+}
+
+/* Adicione isso na seção de estilos */
+.hero-selector.no-teamup {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.hero-selector.no-teamup:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: none;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.hero-selector.no-teamup .hero-icon {
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .hero-selector {
@@ -345,7 +433,7 @@ export default {
     width: auto;
     max-width: 100%;
     object-fit: contain;
-    object-position: center;
+    object-position:top;
 }
 
 /* Container de conteúdo central */
@@ -406,18 +494,72 @@ export default {
     text-align: center;
 }
 
+.teamup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .teamup-name {
     color: #FFD700;
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+.teamup-impact {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: help;
+}
+
+.teamup-impact.op {
+    background-color: #FFD700;
+    color: #000;
+}
+
+.teamup-impact.strong {
+    background-color: #FF5555;
+    color: #fff;
+}
+
+.teamup-impact.balanced {
+    background-color: #5555FF;
+    color: #fff;
+}
+
+.teamup-impact.weak {
+    background-color: #55FF55;
+    color: #000;
+}
+
 .teamup-description {
     line-height: 1.6;
+    padding-left: 12rem;
+    padding-right: 12rem;
     margin-bottom: 2rem;
     font-size: 1.1rem;
+}
+
+.teamup-details {
+    text-align: left;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    list-style-type: disc;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.teamup-details li {
+    margin-bottom: 0.8rem;
 }
 
 .teamup-images, .teamup-videos {
@@ -560,5 +702,26 @@ export default {
 .slide-fade-leave-to {
     opacity: 0;
     transform: translateX(20px);
+}
+
+/* Tooltip styles */
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
 }
 </style>
