@@ -301,7 +301,7 @@ async selectHero(hero) {
             const tooltips = {
                 'OP': 'This teamup is extremely powerful and can dominate matches',
                 'strong': 'This teamup provides significant advantages',
-                'balanced': 'This is a fair and balanced teamup',
+                'balanced': 'This is a fair and balanced teamup in my opinion',
                 'weak': 'This teamup has minimal synergy or impact'
             }
             return tooltips[impact] || ''
